@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>東京の天気</title>
+    <title>ログイン</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -15,7 +15,7 @@
             align-items: center;
             height: 100vh;
         }
-        .weather-card, .login-card {
+        .login-card {
             background: white;
             border-radius: 16px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
@@ -25,22 +25,13 @@
             width: 100%;
             transition: transform 0.2s, box-shadow 0.2s;
         }
-        .weather-card:hover, .login-card:hover {
+        .login-card:hover {
             transform: scale(1.05);
             box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
         }
-        .weather-card h1, .login-card h1 {
+        .login-card h1 {
             font-size: 1.8rem;
             margin-bottom: 15px;
-            color: #333;
-        }
-        .weather-card p, .login-card p {
-            margin: 10px 0;
-            font-size: 1rem;
-            color: #555;
-        }
-        .weather-card .temperature, .login-card .temperature {
-            font-size: 2rem;
             color: #333;
         }
         .login-card form {
@@ -54,7 +45,7 @@
             border: 1px solid #ccc;
             border-radius: 8px;
         }
-        .login-card button, .weather-card button {
+        .login-card button {
             padding: 10px;
             font-size: 1rem;
             border: none;
@@ -63,22 +54,12 @@
             color: white;
             cursor: pointer;
         }
-        .login-card button:hover, .weather-card button:hover {
+        .login-card button:hover {
             background-color: #00BFFF;
         }
     </style>
 </head>
 <body>
-    {% if 'username' in session %}
-    <div class="weather-card">
-        <h1>東京の天気</h1>
-        <p>気温: <span class="temperature">{{ temperature }}°C</span></p>
-        <p>天気: {{ weather }}</p>
-        <form action="{{ url_for('logout') }}" method="post">
-            <button type="submit">ログアウト</button>
-        </form>
-    </div>
-    {% else %}
     <div class="login-card">
         <h1>ログイン</h1>
         <form action="{{ url_for('login') }}" method="post">
@@ -87,6 +68,5 @@
             <button type="submit">ログイン</button>
         </form>
     </div>
-    {% endif %}
 </body>
 </html>
